@@ -1030,7 +1030,8 @@ fn get_api_server_(api: String, custom: String) -> String {
             return lic.api.clone();
         }
     }
-    if !api.is_empty() {
+    return "https://api.celjim.fr".to_owned()
+/*    if !api.is_empty() {
         return api.to_owned();
     }
     let api = option_env!("API_SERVER").unwrap_or_default();
@@ -1047,6 +1048,7 @@ fn get_api_server_(api: String, custom: String) -> String {
         }
     }
     "https://admin.rustdesk.com".to_owned()
+    */
 }
 
 #[inline]
