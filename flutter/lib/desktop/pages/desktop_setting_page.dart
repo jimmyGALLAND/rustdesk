@@ -2271,18 +2271,21 @@ class _AboutState extends State<_About> {
     return futureBuilder(future: () async {
       final license = await bind.mainGetLicense();
       final version = await bind.mainGetVersion();
-      final buildDate = await bind.mainGetBuildDate();
       final fingerprint = await bind.mainGetFingerprint();
+      final buildDate = await bind.mainGetBuildDate();
+      final api_server = await bind.mainGetApiServer();
       return {
         'license': license,
         'version': version,
         'buildDate': buildDate,
+        'api_server': api_server,
         'fingerprint': fingerprint
       };
     }(), hasData: (data) {
       final license = data['license'].toString();
       final version = data['version'].toString();
       final buildDate = data['buildDate'].toString();
+      final api_server = data['api_server'].toString();
       final fingerprint = data['fingerprint'].toString();
       const linkStyle = TextStyle(decoration: TextDecoration.underline);
       final scrollController = ScrollController();
@@ -2301,6 +2304,9 @@ class _AboutState extends State<_About> {
               SelectionArea(
                   child: Text('${translate('Build Date')}: $buildDate')
                       .marginSymmetric(vertical: 4.0)),
+              SelectionArea(
+                  child: Text('${translate('Api Server')}: $api_server')
+                      .marginSymmetric(vertical: 4.0)),              
               if (!isWeb)
                 SelectionArea(
                     child: Text('${translate('Fingerprint')}: $fingerprint')
